@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  border: 1px solid black;
+  padding: 2rem;
+}
+
+.App {
+  text-align: center;
+}
+
+.tic-tac-toe-container {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}
+
+.squares-row {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.square-button {
+  height: 64px;
+  width: 64px;
+  background: none;
+}
+
+.square-button:hover {
+  cursor: pointer;
+  border-color: aqua;
+}
+
+.board-container {
+  border: 1px solid red;
+}
