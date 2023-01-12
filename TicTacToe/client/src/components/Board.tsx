@@ -3,12 +3,14 @@ import React, {useState} from 'react';
 import {Square} from "./Square";
 import CloseIcon from "@mui/icons-material/Close";
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
+import {HubConnection} from "@aspnet/signalr";
 
 interface BoardProps {
     squaresInRow: number;
+    connection: HubConnection | undefined;
 }
 
-export const Board = ({squaresInRow}: BoardProps) => {
+export const Board = ({squaresInRow, connection}: BoardProps) => {
 
     const squaresCount = squaresInRow * squaresInRow;
     const [squares, setSquares] = useState(Array(squaresCount).fill(null));
@@ -27,6 +29,8 @@ export const Board = ({squaresInRow}: BoardProps) => {
         squares[i] = isX ? 'X' : 'O';
         setSquares(squares);
         setIsX(!isX);
+
+        connection?.invoke("SendMessage", 'Hi');
     }
 
     const winner = calculateWinner(squares)
@@ -82,11 +86,6 @@ export const Board = ({squaresInRow}: BoardProps) => {
         for (let i = 0; i < winningPatterns.length; i++) {
             const [a, b, c] = winningPatterns[i];
 
-           // console.log(a, b, c);
-
-            console.log(squares[a]);
-            console.log(squares[b]);
-            console.log(squares[c]);
             if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
                 return squares[a];
             }

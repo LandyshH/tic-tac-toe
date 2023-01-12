@@ -1,14 +1,10 @@
 import React from 'react';
 import './App.css';
-import {Board} from "./components/Board";
+import GamePage from "./pages/GamePage";
 
 function App() {
-
-
   return (
-      <div className={"tic-tac-toe-container"}>
-        <Board squaresInRow={3}></Board>
-      </div>
+      <GamePage></GamePage>
   );
 }
 
