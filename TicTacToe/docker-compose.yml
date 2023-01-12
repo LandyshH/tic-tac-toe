@@ -29,6 +29,7 @@ services:
       dockerfile: WebAPI/Dockerfile
     environment:
       ConnectionStrings__MySql: mysql://myuser:mypassword@db:3306/mydb
+      Rabbit__Host: rabbitmq
     ports:
       - "8080:80"
     depends_on:
