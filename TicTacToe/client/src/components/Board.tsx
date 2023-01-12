@@ -1,5 +1,8 @@
+import { Button } from '@mui/material';
 import React, {useState} from 'react';
 import {Square} from "./Square";
+import CloseIcon from "@mui/icons-material/Close";
+import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 
 interface BoardProps {
     squaresInRow: number;
@@ -21,7 +24,7 @@ export const Board = ({squaresInRow}: BoardProps) => {
             return;
         }
 
-        squares[i] = isX ? "X" : "O";
+        squares[i] = isX ? 'X' : 'O';
         setSquares(squares);
         setIsX(!isX);
     }
@@ -79,8 +82,11 @@ export const Board = ({squaresInRow}: BoardProps) => {
         for (let i = 0; i < winningPatterns.length; i++) {
             const [a, b, c] = winningPatterns[i];
 
-            console.log(a, b, c);
+           // console.log(a, b, c);
 
+            console.log(squares[a]);
+            console.log(squares[b]);
+            console.log(squares[c]);
             if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
                 return squares[a];
             }
@@ -109,7 +115,9 @@ export const Board = ({squaresInRow}: BoardProps) => {
         <div className={"board-container"}>
             {rows}
             <div className="status">{status}</div>
-            <button className="restart" onClick={handleRestart}>Restart Game!</button>
+            <div className={"restart-button"} >
+                <Button color={"inherit"} variant="outlined" onClick={handleRestart} fullWidth={true}>Restart</Button>
+            </div>
         </div>
     );
 };

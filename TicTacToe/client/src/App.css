@@ -5,8 +5,11 @@
 }
 
 #root {
+  width: fit-content;
   border: 1px solid black;
+  background-color: #151a2a;
   padding: 2rem;
+  margin: 5rem auto;
 }
 
 .App {
@@ -17,6 +20,7 @@
   display: flex;
   justify-content: center;
   justify-self: center;
+  color: white;
 }
 
 .squares-row {
@@ -33,9 +37,20 @@
 
 .square-button:hover {
   cursor: pointer;
-  border-color: aqua;
+  border-color: #ffffff;
 }
 
 .board-container {
-  border: 1px solid red;
+
+  border: 1px solid #ffffff;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.restart-button {
+  color: white;
+}
+
+.restart-button:hover {
+  color: aqua;
 }

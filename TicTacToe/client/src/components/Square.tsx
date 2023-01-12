@@ -1,4 +1,6 @@
+import { Button } from '@mui/material';
 import React from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface SquareProps {
     value: any;
@@ -7,8 +9,26 @@ interface SquareProps {
 
 export const Square = ({value, onClick} : SquareProps) => {
     return (
-        <button className={"square-button"} onClick={onClick}>
+  /*      <button className={"square-button"} onClick={onClick}>
             {value}
-        </button>
+        </button>*/
+
+    <Button
+        className={"square-button"}
+        onClick={onClick}
+        variant="outlined"
+        sx={{
+            width: 64,
+            height: 64,
+            borderRadius: 0,
+            border: "1px solid",
+            borderColor: "white",
+            "& .MuiButton-startIcon": { margin: 0 },
+            color: "inherit",
+            "&:hover": {borderColor: "aqua"}
+        }}
+    >
+        {value}
+    </Button>
     );
 };
