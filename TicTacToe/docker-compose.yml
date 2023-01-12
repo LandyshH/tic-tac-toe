@@ -1,0 +1,56 @@
+version: '3.6'
+
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    container_name: db
+    
+  rabbitmq:
+    image: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: myuser
+      RABBITMQ_DEFAULT_PASS: mypassword
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    container_name: rabbitmq
+    
+  web-api:
+    restart: always
+    build:
+      context: server
+      dockerfile: WebAPI/Dockerfile
+    environment:
+      ConnectionStrings__MySql: mysql://myuser:mypassword@db:3306/mydb
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+      - rabbitmq
+    container_name: web-api
+    
+  consumer:
+    restart: always
+    depends_on:
+      - db
+      - rabbitmq
+    build:
+      context: server
+      dockerfile: Consumer/Dockerfile
+    container_name: consumer
+    
+  client:
+    restart: always
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    container_name: client
